@@ -183,33 +183,34 @@ exports.random_play = (req, res, next) => {
 };
 
 
-// GET /quizzes/:quizId/check
-exports.randomcheck = (req, res, next) => {
+// GET /quizzes/randomcheck/:quizId
+exports.randomcheck = function (req, res, next) {
 
     var answer = req.query.answer || "";
-    const result = answer.toLowerCase().trim() === req.quiz.answer.toLowerCase().trim();
+
+    var result = answer.toLowerCase().trim() === req.quiz.answer.toLowerCase().trim();
+    
     var quizzes = req.session.quizzes;
 
-    if (result){
+    if (result) {
         req.session.score++;
-        var score = req.session.score;
+        var score = req.session.score; 
     }
     else{
         var score = req.session.score;
         req.session.quizzes = undefined;
     }
-
-    if(score===quizzes.length){
-        res.render('quizzes/random_nomore',{
-            score: score
+    if (score === quizzes.length){
+        res.render('quizzes/random_nomore', {
+           score: score
         });
     }
-    else{
+    else {
         res.render('quizzes/random_result', {
-          quiz: req.quiz,
-          result: result,
-          answer: answer,
-          score: req.session.score
+           quiz: req.quiz,
+           result: result,
+           answer: answer,
+           score: req.session.score
         });
     }
-}; 
+};
