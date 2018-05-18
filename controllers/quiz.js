@@ -208,7 +208,7 @@ exports.randomcheck = function (req, res, next) {
     }
     else {
         res.render('quizzes/random_result', {
-           quiz: req.quiz,
+           quiz: quiz,
            result: result,
            answer: answer,
            score: score
