@@ -162,13 +162,13 @@ exports.randomplay = (req, res, next) => {
     req.session.score = req.session.score || 0;
    
     models.quiz.findAll()
-    .then(function(quiz){
-        req.session.quiz = req.session.quiz || quiz;
-        while(quiz === 0){
+    .then(function(preguntas){
+        req.session.preguntas = req.session.preguntas || quizzes;
+        while(preguntas === 0){
             var posicion = Math.floor(Math.random()*req.session.quiz.length);
             if(posicion === quizzes.length)
                 posicion--;
-            quiz = req.session.quiz[posicion];
+            quiz = req.session.quizzes[posicion];
         }
         req.session.quiz[posicion] = 0;
 
