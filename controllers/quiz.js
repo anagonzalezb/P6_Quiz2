@@ -190,7 +190,7 @@ exports.randomcheck = function (req, res, next) {
 
     var result = answer.toLowerCase().trim() === req.quiz.answer.toLowerCase().trim();
     
-    var quizzes = req.session.quiz;
+    var quizzes = req.session.quizzes;
 
     if (result) {
         req.session.score++;
@@ -199,7 +199,7 @@ exports.randomcheck = function (req, res, next) {
     else{
         var score = req.session.score;
         req.session.score=0;
-        req.session.quiz = undefined;
+        req.session.quizzes = undefined;
     }
     if (score === quizzes.length){
         res.render('quizzes/random_nomore', {
