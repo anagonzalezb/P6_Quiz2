@@ -198,6 +198,7 @@ exports.randomcheck = function (req, res, next) {
     }
     else{
         var score = req.session.score;
+        req.session.score=0;
         req.session.quizzes = undefined;
     }
     if (score === quizzes.length){
@@ -210,7 +211,7 @@ exports.randomcheck = function (req, res, next) {
            quiz: req.quiz,
            result: result,
            answer: answer,
-           score: req.session.score
+           score: score
         });
     }
 };
