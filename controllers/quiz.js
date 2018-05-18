@@ -162,9 +162,9 @@ exports.randomplay = (req, res, next) => {
     req.session.score = req.session.score || 0;
    
     models.quiz.findAll()
-    .then(function(preguntas){
-        req.session.preguntas = req.session.preguntas || quizzes;
-        while(preguntas === 0){
+    .then(function(quiz){
+        req.session.quiz = req.session.quiz || quiz;
+        while(quiz === 0){
             var posicion = Math.floor(Math.random()*req.session.quiz.length);
             if(posicion === quizzes.length)
                 posicion--;
@@ -190,7 +190,7 @@ exports.randomcheck = function (req, res, next) {
 
     var result = answer.toLowerCase().trim() === req.quiz.answer.toLowerCase().trim();
     
-    var quizzes= req.session.quizzes;
+    var quizzes= req.session.quiz;
 
     if (result) {
         req.session.score++;
