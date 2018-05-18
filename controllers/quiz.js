@@ -199,7 +199,7 @@ exports.randomcheck = function (req, res, next) {
     else{
         var score = req.session.score;
         req.session.score=0;
-        req.session.quizzes = undefined;
+        //req.session.quizzes = undefined;
     }
     if (score === quizzes.length){
         res.render('quizzes/random_nomore', {
