@@ -155,7 +155,7 @@ exports.check = (req, res, next) => {
 };
 
 // GET /quizzes/:quizId/play
-exports.random_play = (req, res, next) => {
+exports.randomplay = (req, res, next) => {
     var answer = req.query.answer || "";
 
     req.session.score = req.session.score || 0;
@@ -172,7 +172,7 @@ exports.random_play = (req, res, next) => {
         }
         req.session.quizzes[posicion] = 0;
 
-        res.render('quizzes/random_play',{
+        res.render('quizzes/randomplay',{
             quiz: quiz,
             answer: answer,
             score: req.session.score
