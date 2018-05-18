@@ -163,14 +163,14 @@ exports.randomplay = (req, res, next) => {
    
     models.quiz.findAll()
     .then(function(quiz){
-        req.session.quiz = req.session.quiz || quizzes;
+        req.session.quiz = req.session.quiz || quiz;
         while(quiz === 0){
-            var posicion = Math.floor(Math.random()*req.session.quizzes.length);
+            var posicion = Math.floor(Math.random()*req.session.quiz.length);
             if(posicion === quizzes.length)
                 posicion--;
-            quiz = req.session.quizzes[posicion];
+            quiz = req.session.quiz[posicion];
         }
-        req.session.quizzes[posicion] = 0;
+        req.session.quiz[posicion] = 0;
 
         res.render('quizzes/randomplay',{
             quiz: quiz,
