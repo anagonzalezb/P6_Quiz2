@@ -201,7 +201,7 @@ exports.randomcheck = function (req, res, next) {
         req.session.score=0;
         req.session.quiz = undefined;
     }
-    if (score === quiz.length){
+    if (score === quizzes.length){
         res.render('quizzes/random_nomore', {
            score: score
         });
