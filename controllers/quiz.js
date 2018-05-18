@@ -156,6 +156,7 @@ exports.check = (req, res, next) => {
 
 // GET /quizzes/:quizId/play
 exports.randomplay = (req, res, next) => {
+    const quiz=req;
     var answer = req.query.answer || "";
 
     req.session.score = req.session.score || 0;
@@ -163,7 +164,7 @@ exports.randomplay = (req, res, next) => {
     models.quiz.findAll()
     .then(function(quizzes){
         req.session.quizzes = req.session.quizzes || quizzes;
-         var quiz=0;
+        const quiz=0;
         while(quiz === 0){
             var posicion = Math.floor(Math.random()*req.session.quizzes.length);
             if(posicion === quizzes.length)
